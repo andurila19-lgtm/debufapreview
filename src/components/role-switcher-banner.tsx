@@ -36,11 +36,11 @@ export function RoleSwitcherBanner() {
 
   return (
     <div
-      className={`fixed right-4 z-50 transition-all duration-300 ${
+      className={`fixed right-4 z-30 transition-all duration-300 ${
         isTukang ? 'bottom-16 sm:bottom-4' : 'bottom-4'
       }`}
     >
-      <div className='bg-background/95 backdrop-blur-md border border-border/80 shadow-2xl rounded-2xl p-2.5 flex items-center gap-2 text-xs'>
+      <div className='bg-background/95 backdrop-blur-md border border-border/80 shadow-2xl rounded-2xl p-2.5 flex items-center gap-2 text-xs max-w-[calc(100vw-2rem)] overflow-x-auto'>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className='flex items-center gap-2 font-medium px-2 py-1 rounded-lg hover:bg-muted/80 text-foreground transition-colors'

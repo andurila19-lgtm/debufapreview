@@ -308,8 +308,8 @@ export default function TukangBerandaPage() {
 
       {/* MODAL DIALOG ABSENSI */}
       {showAbsenModal && (
-        <div className='fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-xs p-4'>
-          <div className='w-full max-w-sm bg-neutral-900 border border-neutral-700 rounded-3xl p-5 space-y-4 text-white shadow-2xl animate-in slide-in-from-bottom duration-200'>
+        <div className='fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto'>
+          <div className='w-full max-w-sm my-auto bg-neutral-900 border border-neutral-700 rounded-2xl p-5 space-y-4 text-white shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto'>
             <div className='flex items-center justify-between border-b border-neutral-800 pb-3'>
               <h3 className='font-bold text-sm'>Konfirmasi Absen {absenType.toUpperCase()}</h3>
               <button
