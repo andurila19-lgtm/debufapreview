@@ -15,12 +15,14 @@ export function RoleSwitcherBanner() {
   const pathname = usePathname();
   const [isExpanded, setIsExpanded] = useState(true);
 
+  const isTukang = pathname.startsWith('/tukang');
+
   const handleSwitch = (role: UserRole) => {
     if (role === currentRole) return;
 
     switchRole(role);
     toast.info(
-      `Beralih peran: ${role} Demo (${role === 'OWNER' ? 'Pak Budi' : role === 'ADMIN' ? 'Siti Rahma' : 'Joko Tukang'})`
+      `Beralih peran: ${role} Demo (${role === 'OWNER' ? 'Pak Budi' : role === 'ADMIN' ? 'Siti Rahma' : 'Pak Slamet Riyadi'})`
     );
 
     if (role === 'WORKER') {
@@ -33,7 +35,11 @@ export function RoleSwitcherBanner() {
   };
 
   return (
-    <div className='fixed bottom-4 right-4 z-50 transition-all duration-300'>
+    <div
+      className={`fixed right-4 z-50 transition-all duration-300 ${
+        isTukang ? 'bottom-16 sm:bottom-4' : 'bottom-4'
+      }`}
+    >
       <div className='bg-background/95 backdrop-blur-md border border-border/80 shadow-2xl rounded-2xl p-2.5 flex items-center gap-2 text-xs'>
         <button
           onClick={() => setIsExpanded(!isExpanded)}

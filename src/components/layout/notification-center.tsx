@@ -23,40 +23,39 @@ const initialNotifications: DebufaNotification[] = [
     id: 'n-1',
     title: 'DP Proyek Dikonfirmasi',
     description:
-      'DP Rp 18.000.000 untuk Kitchen Set Modern Minimalis (Budi Santoso) telah masuk ke Rekening BCA.',
+      'DP Rp 12.250.000 untuk Kitchen Set Minimalis Modern (Budi Santoso) telah masuk ke Rekening BCA.',
     time: '10 menit yang lalu',
     type: 'payment',
     unread: true,
-    link: '/admin/payments'
+    link: '/admin/pembayaran'
   },
   {
     id: 'n-2',
-    title: 'Tahap Produksi Berlanjut',
+    title: 'Tahap Finishing Berjalan',
     description:
-      'Walk-in Closet Mewah (Siti Rahma) telah selesai Perakitan Karkas, lanjut ke Finishing.',
+      'Rak Display Buku & Partisi (Ibu Rina Kusuma) selesai laminasi HPL oak, lanjut QC akhir.',
     time: '1 jam yang lalu',
     type: 'production',
     unread: true,
-    link: '/admin/projects/PRJ-2026-002'
+    link: '/admin/pesanan/DBF-00126'
   },
   {
     id: 'n-3',
     title: 'Jadwal Pengiriman Besok',
-    description:
-      'Meeting Table 3.2m (PT Sinar Mandiri) dijadwalkan pasang onsite besok pukul 09.00 WIB.',
+    description: 'Walk-in Closet & Meja Rias (Ibu Sari Rahmawati) siap kirim dan instalasi ke BSD.',
     time: '3 jam yang lalu',
     type: 'delivery',
     unread: true,
-    link: '/admin/projects/PRJ-2026-003'
+    link: '/admin/pesanan/DBF-00127'
   },
   {
     id: 'n-4',
     title: 'Pengajuan Kasbon Baru',
-    description: 'Pak Joko Santoso mengajukan kasbon Rp 300.000 (Keperluan Keluarga).',
+    description: 'Pak Slamet Riyadi mengajukan kasbon Rp 300.000 (Keperluan Keluarga).',
     time: 'Kemarin',
     type: 'worker',
     unread: false,
-    link: '/admin/transactions'
+    link: '/admin/tukang'
   }
 ];
 
@@ -159,7 +158,7 @@ export function NotificationCenter() {
         </ScrollArea>
         <div className='border-t border-border/50 p-2 text-center bg-muted/20'>
           <Link
-            href='/admin/projects'
+            href='/admin/pesanan'
             className='text-xs text-muted-foreground hover:text-foreground font-medium'
           >
             Lihat semua aktivitas proyek &rarr;

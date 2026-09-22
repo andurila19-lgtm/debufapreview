@@ -9,6 +9,8 @@ import { Icons } from '@/components/icons';
 import { formatRupiah } from '@/lib/formatters';
 
 export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
   const products = [
     {
       title: 'Kitchen Set Modern',
@@ -150,8 +152,81 @@ export default function HomePage() {
             >
               Demo Admin
             </Button>
+            <button
+              type='button'
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className='md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors focus:outline-none'
+              aria-label='Buka Menu Navigasi'
+            >
+              {mobileMenuOpen ? (
+                <Icons.close className='h-5 w-5' />
+              ) : (
+                <Icons.menu className='h-5 w-5' />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* MOBILE NAVIGATION DRAWER */}
+        {mobileMenuOpen && (
+          <div className='md:hidden border-t border-border/60 bg-background/95 backdrop-blur-lg px-4 py-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200'>
+            <nav className='flex flex-col gap-1'>
+              <a
+                href='#beranda'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-amber-500/10 hover:text-amber-800 dark:hover:text-amber-300 transition-colors'
+              >
+                Beranda
+              </a>
+              <a
+                href='#produk'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors'
+              >
+                Katalog Produk
+              </a>
+              <Link
+                href='/estimator'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors'
+              >
+                Kalkulator Estimasi Harga
+              </Link>
+              <Link
+                href='/tracking'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors'
+              >
+                Cek Progres Pesanan
+              </Link>
+              <a
+                href='#tentang'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors'
+              >
+                Tentang Kami
+              </a>
+              <a
+                href='#kontak'
+                onClick={() => setMobileMenuOpen(false)}
+                className='px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors'
+              >
+                Hubungi Kami (WhatsApp)
+              </a>
+            </nav>
+            <div className='pt-2 border-t border-border/50 flex flex-col gap-2'>
+              <Button
+                variant='outline'
+                size='sm'
+                render={<Link href='/tracking' onClick={() => setMobileMenuOpen(false)} />}
+                className='w-full justify-center text-xs'
+              >
+                <Icons.truck className='mr-1.5 h-3.5 w-3.5' />
+                Cek Pesanan Customer
+              </Button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* HERO SECTION */}

@@ -88,7 +88,16 @@ export function UserNav() {
             className='text-xs cursor-pointer gap-2 py-1.5'
           >
             <Icons.user className='h-3.5 w-3.5 text-muted-foreground' />
-            <span>Profil Pengguna</span>
+            <span>
+              {currentRole === 'OWNER' ? 'Pengaturan Usaha (Owner)' : 'Profil Akun (Admin)'}
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => router.push('/tukang')}
+            className='text-xs cursor-pointer gap-2 py-1.5'
+          >
+            <Icons.hammer className='h-3.5 w-3.5 text-amber-700 dark:text-amber-400' />
+            <span>Buka Portal Tukang (Mobile)</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

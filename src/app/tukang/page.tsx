@@ -282,7 +282,7 @@ export default function TukangBerandaPage() {
                 </span>
               </div>
 
-              <div className='space-y-1'>
+              <div className='space-y-1.5'>
                 <div className='flex justify-between text-[10px]'>
                   <span className='text-neutral-400'>Progress:</span>
                   <span className='font-mono font-bold text-amber-400'>{p.progress}%</span>
@@ -294,6 +294,13 @@ export default function TukangBerandaPage() {
                   />
                 </div>
               </div>
+
+              <Link
+                href='/tukang/pekerjaan'
+                className='block text-center py-2 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 font-semibold text-xs border border-amber-500/30 transition-all active:scale-98'
+              >
+                🛠️ Update Progres & Foto Pengerjaan &rarr;
+              </Link>
             </Card>
           ))}
         </div>

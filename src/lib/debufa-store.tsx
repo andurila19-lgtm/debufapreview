@@ -190,9 +190,6 @@ export function DebufaStoreProvider({ children }: { children: React.ReactNode })
         if (storedRole && DEMO_USERS[storedRole]) {
           setCurrentRole(storedRole);
           setCurrentUser(DEMO_USERS[storedRole]);
-          authenticateDemo(storedRole);
-        } else {
-          authenticateDemo('OWNER');
         }
       }
     } catch (e) {

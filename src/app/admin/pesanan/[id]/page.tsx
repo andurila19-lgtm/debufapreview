@@ -220,6 +220,16 @@ export default function DetailPesananPage() {
           <Button
             variant='outline'
             size='sm'
+            render={<a href={waUrl} target='_blank' rel='noopener noreferrer' />}
+            className='text-xs text-emerald-700 dark:text-emerald-400 border-emerald-600/30 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 gap-1.5'
+          >
+            <Icons.whatsapp className='h-3.5 w-3.5 text-emerald-600' />
+            Kirim Update WA
+          </Button>
+
+          <Button
+            variant='outline'
+            size='sm'
             render={<Link href={`/tracking?code=${project.id}`} target='_blank' />}
             className='text-xs gap-1.5'
           >

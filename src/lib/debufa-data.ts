@@ -603,7 +603,7 @@ export const INITIAL_PROJECTS: Project[] = [
 export const INITIAL_QUOTATIONS: Quotation[] = [
   {
     id: 'Q-DBF-2026-001',
-    projectId: 'DBF-2026-001',
+    projectId: 'DBF-00125',
     customerId: 'CST-001',
     customerName: 'Ibu Rina Sasmita',
     customerPhone: '6281289123456',
@@ -659,7 +659,7 @@ export const INITIAL_QUOTATIONS: Quotation[] = [
   },
   {
     id: 'Q-DBF-2026-002',
-    projectId: 'DBF-2026-002',
+    projectId: 'DBF-00123',
     customerId: 'CST-002',
     customerName: 'Bpk. Ir. Hendra Gunawan',
     customerPhone: '6281345678901',
@@ -691,7 +691,7 @@ export const INITIAL_QUOTATIONS: Quotation[] = [
   },
   {
     id: 'Q-DBF-2026-005',
-    projectId: 'DBF-2026-005',
+    projectId: 'DBF-00124',
     customerId: 'CST-005',
     customerName: 'Bpk. Denny Wicaksono',
     customerPhone: '628119876543',
@@ -822,7 +822,7 @@ export const INITIAL_WORKERS: Worker[] = [
     role: 'Tukang Kayu Utama',
     status: 'aktif',
     dailyRate: 180000,
-    activeProject: 'DBF-2026-001'
+    activeProject: 'DBF-00125'
   },
   {
     id: 'TKG-02',
@@ -831,7 +831,7 @@ export const INITIAL_WORKERS: Worker[] = [
     role: 'Finisher / Painter',
     status: 'aktif',
     dailyRate: 175000,
-    activeProject: 'DBF-2026-001'
+    activeProject: 'DBF-00126'
   },
   {
     id: 'TKG-03',
@@ -840,7 +840,7 @@ export const INITIAL_WORKERS: Worker[] = [
     role: 'Tukang Kayu Utama',
     status: 'aktif',
     dailyRate: 180000,
-    activeProject: 'DBF-2026-002'
+    activeProject: 'DBF-00127'
   },
   {
     id: 'TKG-04',
@@ -849,7 +849,7 @@ export const INITIAL_WORKERS: Worker[] = [
     role: 'Asisten Tukang',
     status: 'aktif',
     dailyRate: 130000,
-    activeProject: 'DBF-2026-002'
+    activeProject: 'DBF-00125'
   },
   {
     id: 'TKG-05',
@@ -858,7 +858,7 @@ export const INITIAL_WORKERS: Worker[] = [
     role: 'Aplikator Lapangan',
     status: 'lapangan',
     dailyRate: 170000,
-    activeProject: 'DBF-2026-003'
+    activeProject: 'DBF-00124'
   },
   {
     id: 'TKG-06',
@@ -881,7 +881,7 @@ export const INITIAL_ATTENDANCE: Attendance[] = [
     status: 'hadir',
     locationType: 'bengkel',
     locationName: 'Workshop Bengkel Debufa',
-    notes: 'Fokus pengerjaan edging & engsel DBF-2026-001'
+    notes: 'Fokus pengerjaan edging & engsel DBF-00125'
   },
   {
     id: 'ATT-2026-002',
@@ -928,7 +928,7 @@ export const INITIAL_ATTENDANCE: Attendance[] = [
     checkOut: '17:00',
     status: 'hadir',
     locationType: 'lapangan',
-    locationName: 'Proyek DBF-2026-001 (Rumah Bpk. Hendra - BSD City)',
+    locationName: 'Proyek DBF-00124 (Interior Cafe Bpk. Hendra - Bintaro)',
     gpsCoordinates: {
       latitude: -6.3015,
       longitude: 106.6522,
@@ -993,17 +993,16 @@ export const INITIAL_TRANSACTIONS: WorkerTransaction[] = [
 export const RECENT_ACTIVITIES = [
   {
     id: 'ACT-01',
-    time: 'Hari ini, 14:30',
+    time: 'Hari ini, 09:30',
     title: 'Pelunasan Diterima',
-    description: 'Ibu Maya Anggraini melunasi Rp 8.400.000 untuk Backdrop TV (DBF-2026-003).',
+    description: 'Ibu Maya Anggraini melunasi Rp 8.400.000 untuk Backdrop TV (DBF-00121).',
     type: 'payment'
   },
   {
     id: 'ACT-02',
     time: 'Hari ini, 11:15',
     title: 'Update Progress Finishing',
-    description:
-      'Project Kitchen Set Ibu Rina (DBF-2026-001) mencapai 75% pengerjaan edging & fitting.',
+    description: 'Project Kitchen Set Bpk. Budi (DBF-00125) mencapai 60% pengerjaan rangka.',
     type: 'progress'
   },
   {
@@ -1024,7 +1023,7 @@ export const RECENT_ACTIVITIES = [
     id: 'ACT-05',
     time: '18 Mar 2026',
     title: 'Pembayaran Termin',
-    description: 'Termin ke-2 diterima Rp 10.750.000 untuk Kitchen Set DBF-2026-001 via BCA.',
+    description: 'Termin ke-2 diterima Rp 12.250.000 untuk Kitchen Set DBF-00125 via BCA.',
     type: 'payment'
   }
 ];

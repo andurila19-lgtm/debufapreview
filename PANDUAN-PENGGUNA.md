@@ -300,7 +300,7 @@ Pelanggan dapat memperkirakan biaya furniture custom secara mandiri:
 Pelanggan dapat mengecek status pesanan furniture tanpa login:
 
 1. Buka halaman `/tracking`.
-2. Masukkan **kode pesanan** yang diberikan oleh Debufa Works (contoh: `DBF-2026-001`).
+2. Masukkan **kode pesanan** yang diberikan oleh Debufa Works (contoh: `DBF-00125`).
 3. Lihat informasi pesanan:
    - Status pengerjaan saat ini
    - Persentase progres
@@ -358,7 +358,7 @@ Pesanan Selesai ✓
 
 - **Selalu perbarui progres pekerjaan** agar pelanggan dapat melihat status terkini melalui tracking.
 - **Catat pembayaran segera** setelah diterima untuk menjaga akurasi laporan keuangan.
-- **Gunakan kode pesanan** (contoh: DBF-2026-001) ketika pelanggan menanyakan progres.
+- **Gunakan kode pesanan** (contoh: DBF-00125) ketika pelanggan menanyakan progres.
 - **Periksa dashboard secara rutin** untuk melihat pesanan yang memerlukan perhatian khusus.
 
 ### Untuk Tukang

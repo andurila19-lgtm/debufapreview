@@ -28,11 +28,18 @@ function TrackingContent() {
     }
   }, [initialCode]);
 
-  const activeProject = projects.find(
-    (p) =>
-      p.id.toLowerCase() === searchedCode.trim().toLowerCase() ||
-      p.customerPhone.includes(searchedCode.trim())
-  );
+  const activeProject = projects.find((p) => {
+    const term = searchedCode.trim().toLowerCase();
+    if (!term) return false;
+    const termClean = term.replace(/[^a-z0-9]/g, '');
+    const pIdClean = p.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (pIdClean === termClean || p.id.toLowerCase().includes(term)) return true;
+    const digitsOnly = term.replace(/\D/g, '');
+    if (digitsOnly.length >= 4 && p.customerPhone.replace(/\D/g, '').includes(digitsOnly)) {
+      return true;
+    }
+    return false;
+  });
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -187,6 +194,29 @@ function TrackingContent() {
             Cek Pesanan
           </Button>
         </form>
+
+        {/* SAMPLE CODE CHIPS FOR DEMO */}
+        <div className='flex flex-wrap items-center justify-center gap-1.5 text-[11px] text-muted-foreground'>
+          <span>Coba contoh:</span>
+          {[
+            { code: 'DBF-00125', label: 'Kitchen Set (60%)' },
+            { code: 'DBF-00127', label: 'Walk-in Closet (95%)' },
+            { code: 'DBF-00126', label: 'Rak Display (80%)' },
+            { code: 'DBF-00123', label: 'Lemari BSD' }
+          ].map((sample) => (
+            <button
+              key={sample.code}
+              type='button'
+              onClick={() => {
+                setInputCode(sample.code);
+                setSearchedCode(sample.code);
+              }}
+              className='px-2.5 py-0.5 rounded-full bg-muted hover:bg-amber-100 hover:text-amber-900 dark:hover:bg-amber-950 dark:hover:text-amber-300 transition-colors font-mono font-medium text-[11px] border border-border/50'
+            >
+              {sample.code}
+            </button>
+          ))}
+        </div>
 
         {activeProject ? (
           <Card className='border-border/70 p-6 space-y-6 bg-card shadow-xs'>

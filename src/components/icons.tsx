@@ -99,6 +99,7 @@ import {
   IconUsers,
   IconVideo,
   IconCrown,
+  IconMenu2,
   IconX
 } from '@tabler/icons-react';
 
@@ -173,6 +174,7 @@ export const Icons = {
   github: IconBrandGithub,
   twitter: IconBrandTwitter,
   logo: IconHammer,
+  menu: IconMenu2,
 
   // Communication
   chat: IconMessage,

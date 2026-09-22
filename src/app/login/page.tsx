@@ -139,66 +139,64 @@ function LoginFormContent() {
           </Button>
         </form>
 
-        {/* Demo Login (Khusus Preview / Development) */}
-        {process.env.NODE_ENV !== 'production' && (
-          <div className='pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-2.5'>
-            <div className='text-center'>
-              <span className='text-[11px] font-semibold text-neutral-400 uppercase tracking-wider'>
-                Demo Login (Preview Development)
-              </span>
-            </div>
-
-            <div className='grid grid-cols-1 gap-1.5'>
-              <Button
-                type='button'
-                variant='outline'
-                disabled={isLoading}
-                onClick={() => handleDemoLogin('OWNER')}
-                className='h-9 text-xs justify-start px-3 rounded-xl border-amber-800/30 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-800 dark:text-neutral-200 font-medium group'
-              >
-                <span className='mr-2 text-sm'>👑</span>
-                <span>
-                  Masuk sebagai <strong>Owner</strong>
-                </span>
-                <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-amber-800 dark:group-hover:text-amber-300'>
-                  Akses Penuh
-                </span>
-              </Button>
-
-              <Button
-                type='button'
-                variant='outline'
-                disabled={isLoading}
-                onClick={() => handleDemoLogin('ADMIN')}
-                className='h-9 text-xs justify-start px-3 rounded-xl border-blue-600/30 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-neutral-800 dark:text-neutral-200 font-medium group'
-              >
-                <span className='mr-2 text-sm'>📋</span>
-                <span>
-                  Masuk sebagai <strong>Admin</strong>
-                </span>
-                <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-blue-700 dark:group-hover:text-blue-300'>
-                  Operasional
-                </span>
-              </Button>
-
-              <Button
-                type='button'
-                variant='outline'
-                disabled={isLoading}
-                onClick={() => handleDemoLogin('WORKER')}
-                className='h-9 text-xs justify-start px-3 rounded-xl border-emerald-600/30 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-neutral-800 dark:text-neutral-200 font-medium group'
-              >
-                <span className='mr-2 text-sm'>🔨</span>
-                <span>
-                  Masuk sebagai <strong>Tukang</strong>
-                </span>
-                <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300'>
-                  Portal Mobile
-                </span>
-              </Button>
-            </div>
+        {/* Demo Login (Akses Cepat Preview) */}
+        <div className='pt-4 border-t border-neutral-200 dark:border-neutral-800 space-y-2.5'>
+          <div className='text-center'>
+            <span className='text-[11px] font-semibold text-neutral-400 uppercase tracking-wider'>
+              Akses Cepat Demo (Pilih Peran)
+            </span>
           </div>
-        )}
+
+          <div className='grid grid-cols-1 gap-1.5'>
+            <Button
+              type='button'
+              variant='outline'
+              disabled={isLoading}
+              onClick={() => handleDemoLogin('OWNER')}
+              className='h-9 text-xs justify-start px-3 rounded-xl border-amber-800/30 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-neutral-800 dark:text-neutral-200 font-medium group cursor-pointer'
+            >
+              <span className='mr-2 text-sm'>👑</span>
+              <span>
+                Masuk sebagai <strong>Owner</strong>
+              </span>
+              <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-amber-800 dark:group-hover:text-amber-300'>
+                Akses Penuh
+              </span>
+            </Button>
+
+            <Button
+              type='button'
+              variant='outline'
+              disabled={isLoading}
+              onClick={() => handleDemoLogin('ADMIN')}
+              className='h-9 text-xs justify-start px-3 rounded-xl border-blue-600/30 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-neutral-800 dark:text-neutral-200 font-medium group cursor-pointer'
+            >
+              <span className='mr-2 text-sm'>📋</span>
+              <span>
+                Masuk sebagai <strong>Admin</strong>
+              </span>
+              <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-blue-700 dark:group-hover:text-blue-300'>
+                Operasional
+              </span>
+            </Button>
+
+            <Button
+              type='button'
+              variant='outline'
+              disabled={isLoading}
+              onClick={() => handleDemoLogin('WORKER')}
+              className='h-9 text-xs justify-start px-3 rounded-xl border-emerald-600/30 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-neutral-800 dark:text-neutral-200 font-medium group cursor-pointer'
+            >
+              <span className='mr-2 text-sm'>🔨</span>
+              <span>
+                Masuk sebagai <strong>Tukang</strong>
+              </span>
+              <span className='ml-auto text-[10px] font-mono text-neutral-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300'>
+                Portal Mobile
+              </span>
+            </Button>
+          </div>
+        </div>
       </Card>
 
       {/* Customer Info Links */}
