@@ -88,9 +88,7 @@ export function NotificationCenter() {
 
   return (
     <Popover>
-      <PopoverTrigger
-        render={<Button variant='ghost' size='icon' className='relative h-8 w-8 text-foreground' />}
-      >
+      <PopoverTrigger className='relative flex h-8 w-8 items-center justify-center rounded-lg hover:bg-muted/80 text-foreground cursor-pointer outline-none border border-transparent focus-visible:border-ring transition-colors'>
         <Icons.notification className='h-4 w-4' />
         {unreadCount > 0 && (
           <span className='bg-amber-600 text-white absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold ring-2 ring-background'>

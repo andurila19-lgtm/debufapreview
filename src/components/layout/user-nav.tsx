@@ -38,14 +38,7 @@ export function UserNav() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-          <Button
-            variant='ghost'
-            className='relative flex items-center gap-2 h-9 px-2 rounded-xl hover:bg-muted/80'
-          />
-        }
-      >
+      <DropdownMenuTrigger className='relative flex items-center gap-2 h-9 px-2 rounded-xl hover:bg-muted/80 cursor-pointer outline-none border border-transparent focus-visible:border-ring transition-colors'>
         <Avatar className='h-8 w-8 border border-amber-800/30 bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200'>
           <AvatarFallback className='text-xs font-bold'>
             {currentUser.avatar || currentUser.name.slice(0, 2).toUpperCase()}
