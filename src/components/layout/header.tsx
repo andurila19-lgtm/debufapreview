@@ -3,10 +3,9 @@ import { SidebarTrigger } from '../ui/sidebar';
 import { Separator } from '../ui/separator';
 import { Breadcrumbs } from '../breadcrumbs';
 import SearchInput from '../search-input';
-import { ThemeSelector } from '../themes/theme-selector';
 import { ThemeModeToggle } from '../themes/theme-mode-toggle';
-import CtaGithub from './cta-github';
-import { NotificationCenter } from '@/features/notifications/components/notification-center';
+import { NotificationCenter } from './notification-center';
+import { UserNav } from './user-nav';
 
 export default function Header() {
   return (
@@ -18,15 +17,22 @@ export default function Header() {
       </div>
 
       <div className='flex items-center gap-2 px-4'>
-        <CtaGithub />
+        <div className='hidden sm:flex items-center gap-1.5'>
+          <a
+            href='/tracking'
+            target='_blank'
+            rel='noreferrer'
+            className='inline-flex items-center gap-1.5 rounded-md border border-border/70 px-2.5 py-1 text-xs font-medium text-foreground/80 hover:bg-muted transition-colors'
+          >
+            <span>Tracking Portal</span>
+          </a>
+        </div>
         <div className='hidden md:flex'>
           <SearchInput />
         </div>
         <ThemeModeToggle />
-        <div className='hidden sm:block'>
-          <ThemeSelector />
-        </div>
         <NotificationCenter />
+        <UserNav />
       </div>
     </header>
   );

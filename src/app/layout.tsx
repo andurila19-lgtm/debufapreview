@@ -20,32 +20,23 @@ export const metadata: Metadata = {
     ? { metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL) }
     : {}),
   title: {
-    default: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
-    template: '%s | Shadcn Dashboard'
+    default: 'DEBUFA WORKS — Sistem Operasional Furniture Custom',
+    template: '%s | DEBUFA WORKS'
   },
   description:
-    'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
+    'Sistem Operasional Furniture Custom: Manajemen Pesanan, Pelanggan, Estimasi Biaya, Keuangan, dan Pantau Progres Workshop Debufa Works.',
   openGraph: {
-    title: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
+    title: 'DEBUFA WORKS — Sistem Operasional Furniture Custom',
     description:
-      'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
-    siteName: 'Shadcn Dashboard',
-    type: 'website',
-    images: [
-      {
-        url: '/shadcn-dashboard.png',
-        width: 3200,
-        height: 1600,
-        alt: 'Shadcn Dashboard overview page'
-      }
-    ]
+      'Sistem Operasional Furniture Custom: Manajemen Pesanan, Pelanggan, Estimasi Biaya, Keuangan, dan Pantau Progres Workshop Debufa Works.',
+    siteName: 'DEBUFA WORKS',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shadcn Dashboard - Next.js Admin Dashboard Template',
+    title: 'DEBUFA WORKS — Sistem Operasional Furniture Custom',
     description:
-      'Free, open source admin dashboard starter built with Next.js 16, shadcn/ui, Tailwind CSS, and TypeScript.',
-    images: ['/shadcn-dashboard.png']
+      'Sistem Operasional Furniture Custom: Manajemen Pesanan, Pelanggan, Estimasi Biaya, Keuangan, dan Pantau Progres Workshop Debufa Works.'
   }
 };
 
@@ -60,7 +51,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const themeToApply = isValidTheme ? activeThemeValue! : DEFAULT_THEME;
 
   return (
-    <html lang='en' suppressHydrationWarning data-theme={themeToApply}>
+    <html lang='id' suppressHydrationWarning data-theme={themeToApply}>
       <head>
         <script
           dangerouslySetInnerHTML={{

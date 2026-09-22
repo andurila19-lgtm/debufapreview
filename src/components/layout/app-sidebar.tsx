@@ -1,14 +1,6 @@
 'use client';
+
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -24,42 +16,71 @@ import {
   SidebarMenuSubItem,
   SidebarRail
 } from '@/components/ui/sidebar';
-import { UserAvatarProfile } from '@/components/user-avatar-profile';
 import { navGroups } from '@/config/nav-config';
-import { useMediaQuery } from '@/hooks/use-media-query';
-import { useClerk, useOrganization, useUser } from '@clerk/nextjs';
-import { useFilteredNavGroups } from '@/hooks/use-nav';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
-import { OrgSwitcher } from '../org-switcher';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useDebufaStore } from '@/lib/debufa-store';
+import { can } from '@/lib/permissions';
+import { Badge } from '@/components/ui/badge';
 
 export default function AppSidebar() {
   const pathname = usePathname();
-  const { isOpen } = useMediaQuery();
-  const { user } = useUser();
-  const { organization } = useOrganization();
-  const { signOut } = useClerk();
-  const router = useRouter();
-  const filteredGroups = useFilteredNavGroups(navGroups);
+  const { currentUser } = useDebufaStore();
 
-  React.useEffect(() => {
-    // Side effects based on sidebar state changes
-  }, [isOpen]);
+  // Filter groups and items based on central permission system
+  const filteredNavGroups = React.useMemo(() => {
+    return navGroups
+      .map((group) => {
+        const visibleItems = group.items.filter((item) => {
+          if (!item.permission) return true;
+          return can(currentUser, item.permission);
+        });
+
+        return {
+          ...group,
+          items: visibleItems
+        };
+      })
+      .filter((group) => group.items.length > 0);
+  }, [currentUser]);
 
   return (
-    <Sidebar collapsible='icon'>
-      <SidebarHeader className='group-data-[collapsible=icon]:pt-4'>
-        <OrgSwitcher />
+    <Sidebar collapsible='icon' className='border-r border-border/60 bg-sidebar'>
+      {/* Brand Header */}
+      <SidebarHeader className='border-b border-border/40 p-4'>
+        <div className='flex items-center gap-3'>
+          <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-800 text-amber-50 shadow-sm'>
+            <Icons.hammer className='h-5 w-5' />
+          </div>
+          <div className='flex flex-col truncate leading-tight group-data-[collapsible=icon]:hidden'>
+            <span className='font-bold text-base tracking-tight text-foreground font-serif'>
+              DEBUFA WORKS
+            </span>
+            <span className='text-[11px] text-muted-foreground font-medium'>
+              Sistem Operasional Furniture Custom
+            </span>
+          </div>
+        </div>
       </SidebarHeader>
-      <SidebarContent className='overflow-x-hidden'>
-        {filteredGroups.map((group) => (
-          <SidebarGroup key={group.label || 'ungrouped'} className='py-0'>
-            {group.label && <SidebarGroupLabel>{group.label}</SidebarGroupLabel>}
+
+      {/* Main Navigation with Centralized Role Filtering */}
+      <SidebarContent className='overflow-x-hidden px-2 py-3'>
+        {filteredNavGroups.map((group) => (
+          <SidebarGroup key={group.label || 'ungrouped'} className='py-1.5'>
+            {group.label && (
+              <SidebarGroupLabel className='px-2 text-[10px] font-semibold tracking-wider text-muted-foreground uppercase'>
+                {group.label}
+              </SidebarGroupLabel>
+            )}
             <SidebarMenu>
               {group.items.map((item) => {
                 const Icon = item.icon ? Icons[item.icon] : Icons.logo;
+                const isActive =
+                  pathname === item.url || (item.url !== '/admin' && pathname.startsWith(item.url));
+
                 return item?.items && item?.items?.length > 0 ? (
                   <Collapsible
                     key={item.title}
@@ -70,22 +91,24 @@ export default function AppSidebar() {
                       render={
                         <SidebarMenuButton
                           tooltip={item.title}
-                          isActive={pathname === item.url}
-                          className='group/collapsible'
+                          isActive={isActive}
+                          className='group/collapsible hover:bg-accent/80'
                         />
                       }
                     >
-                      {item.icon && <Icon />}
-                      <span>{item.title}</span>
+                      {item.icon && (
+                        <Icon className='h-4 w-4 text-amber-800/80 dark:text-amber-400' />
+                      )}
+                      <span className='font-medium text-sm'>{item.title}</span>
                       <Icons.chevronRight className='ml-auto transition-transform duration-200 group-data-panel-open/collapsible:rotate-90' />
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
+                        {item.items.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton
-                              render={<Link href={subItem.url} aria-label={subItem.title} />}
                               isActive={pathname === subItem.url}
+                              render={<Link href={subItem.url} />}
                             >
                               <span>{subItem.title}</span>
                             </SidebarMenuSubButton>
@@ -97,11 +120,24 @@ export default function AppSidebar() {
                 ) : (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
-                      render={<Link href={item.url} aria-label={item.title} />}
                       tooltip={item.title}
-                      isActive={pathname === item.url}
+                      isActive={isActive}
+                      render={<Link href={item.url} />}
+                      className={
+                        isActive
+                          ? 'bg-amber-900/10 text-amber-900 dark:bg-amber-400/15 dark:text-amber-200 font-semibold'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                      }
                     >
-                      <Icon />
+                      {item.icon && (
+                        <Icon
+                          className={`h-4 w-4 ${
+                            isActive
+                              ? 'text-amber-800 dark:text-amber-300'
+                              : 'text-muted-foreground'
+                          }`}
+                        />
+                      )}
                       <span>{item.title}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -111,65 +147,40 @@ export default function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <SidebarMenuButton
-                    size='lg'
-                    className='data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground'
-                  />
-                }
-              >
-                {user && <UserAvatarProfile className='h-8 w-8 rounded-lg' showInfo user={user} />}
-                <Icons.chevronsDown className='ml-auto size-4' />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className='w-(--anchor-width) min-w-56 rounded-lg'
-                side='bottom'
-                align='end'
-                sideOffset={4}
-              >
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel className='p-0 font-normal'>
-                    <div className='px-1 py-1.5'>
-                      {user && (
-                        <UserAvatarProfile className='h-8 w-8 rounded-lg' showInfo user={user} />
-                      )}
-                    </div>
-                  </DropdownMenuLabel>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
 
-                <DropdownMenuGroup>
-                  <DropdownMenuItem onClick={() => router.push('/dashboard/profile')}>
-                    <Icons.account className='mr-2 h-4 w-4' />
-                    Profile
-                  </DropdownMenuItem>
-                  {organization && (
-                    <DropdownMenuItem onClick={() => router.push('/dashboard/billing')}>
-                      <Icons.creditCard className='mr-2 h-4 w-4' />
-                      Billing
-                    </DropdownMenuItem>
-                  )}
-                  <DropdownMenuItem onClick={() => router.push('/dashboard/notifications')}>
-                    <Icons.notification className='mr-2 h-4 w-4' />
-                    Notifications
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem onClick={() => signOut({ redirectUrl: '/auth/sign-in' })}>
-                    <Icons.logout aria-hidden className='mr-2 h-4 w-4' />
-                    Sign out
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
+      {/* Footer Profile showing Current Active Role */}
+      <SidebarFooter className='border-t border-border/40 p-3'>
+        <div className='flex items-center gap-3 group-data-[collapsible=icon]:justify-center'>
+          <Avatar className='h-9 w-9 border border-amber-800/30 bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200'>
+            <AvatarFallback className='text-xs font-bold'>
+              {currentUser.avatar || currentUser.name.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+          <div className='flex flex-col truncate leading-tight group-data-[collapsible=icon]:hidden'>
+            <div className='flex items-center gap-1.5'>
+              <span className='text-xs font-semibold text-foreground truncate'>
+                {currentUser.name}
+              </span>
+              <Badge
+                variant={currentUser.role === 'OWNER' ? 'default' : 'secondary'}
+                className={`text-[9px] px-1 py-0 h-4 font-bold ${
+                  currentUser.role === 'OWNER'
+                    ? 'bg-amber-800 hover:bg-amber-800 text-amber-50'
+                    : 'bg-muted text-muted-foreground'
+                }`}
+              >
+                {currentUser.role}
+              </Badge>
+            </div>
+            <div className='flex items-center gap-1.5 mt-0.5'>
+              <span className='h-1.5 w-1.5 rounded-full bg-emerald-500'></span>
+              <span className='text-[10px] text-muted-foreground truncate'>
+                {currentUser.title ||
+                  (currentUser.role === 'OWNER' ? 'Pemilik Usaha' : 'Admin Operasional')}
+              </span>
+            </div>
+          </div>
+        </div>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

@@ -1,21 +1,21 @@
 /**
- * Default theme that loads when no user preference is set
- * Change this value to set a different default theme
+ * Default theme for DEBUFA WORKS Interior Furniture Management System
+ * Menggunakan warm neutral, off-white, dark typography, dan aksen kayu hangat.
  */
-export const DEFAULT_THEME = 'vercel';
+export const DEFAULT_THEME = 'claude';
 
 export const THEMES = [
   {
-    name: 'Claude',
+    name: 'Claude (Warm Wood & Neutral)',
     value: 'claude'
   },
   {
-    name: 'Discord',
-    value: 'discord'
+    name: 'Notebook',
+    value: 'notebook'
   },
   {
-    name: 'Supabase',
-    value: 'supabase'
+    name: 'Zen (Minimalist)',
+    value: 'zen'
   },
   {
     name: 'Vercel',
@@ -24,25 +24,5 @@ export const THEMES = [
   {
     name: 'Mono',
     value: 'mono'
-  },
-  {
-    name: 'Notebook',
-    value: 'notebook'
-  },
-  {
-    name: 'Light Green',
-    value: 'light-green'
-  },
-  {
-    name: 'Zen',
-    value: 'zen'
-  },
-  {
-    name: 'Astro Vista',
-    value: 'astro-vista'
-  },
-  {
-    name: 'WhatsApp',
-    value: 'whatsapp'
   }
 ];

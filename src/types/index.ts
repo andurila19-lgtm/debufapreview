@@ -1,5 +1,7 @@
 import { Icons } from '@/components/icons';
 
+import { Permission } from './auth';
+
 export interface PermissionCheck {
   permission?: string;
   plan?: string;
@@ -20,6 +22,7 @@ export interface NavItem {
   isActive?: boolean;
   items?: NavItem[];
   access?: PermissionCheck;
+  permission?: Permission;
 }
 
 export interface NavGroup {
